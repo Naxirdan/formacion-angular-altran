@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import posts from 'src/posts.json'
 
 @Component({
@@ -9,9 +9,11 @@ import posts from 'src/posts.json'
 })
 export class ProfileComponent implements OnInit {
 
-  public title: string = 'Instaltran'
+  @Output() closeModal= new EventEmitter<string>()
+  @Input() title: string = 'Instaltran'
   public postsJson: Array<string> = posts;
   public errorPost: boolean= false;
+
   constructor() { }
 
   ngOnInit(): void {}
@@ -23,5 +25,7 @@ export class ProfileComponent implements OnInit {
      this.errorPost = true
    }, 1000)
   }
+
+  close = () => this.closeModal.emit('Modal cerrándose')
 
 }

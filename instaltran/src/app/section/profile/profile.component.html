@@ -1,3 +1,4 @@
 <app-info></app-info>
-
+<h1>{{title}}</h1>
+<button (click)="close()">Cerrar</button>
 <app-feed [posts]="postsJson" (clickDelete)="deletePost($event)" [error]="errorPost"></app-feed>
