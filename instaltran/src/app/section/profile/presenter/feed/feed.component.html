@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let p of posts">
+    {{ p.id }} - {{ p.title }} <img [src]="p.thumbnailUrl" alt="thumb"><br>
+    <button (click)="onClickDelete(p)">Borrar</button> <br>
+    {{error}}
+  </li>
+</ul>
