@@ -1,3 +1,3 @@
-const prueba = (function () {
-  alert('ksdgjmnlkm')
+const Prueba = (function () {
+  alert('Hola mundo')
 })

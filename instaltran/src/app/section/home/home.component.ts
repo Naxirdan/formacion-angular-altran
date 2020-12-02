@@ -6,6 +6,8 @@ import { PostFacade } from 'src/app/core/store/post/facade/post.facade';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
 import { ProfileComponent } from '../profile/profile.component';
 
+declare const Prueba: any;
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,12 +19,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   private postsSubscription: Subscription;
   private postsListSubscription: Subscription;
   private modalSubscription: Subscription;
-  public bsModalRef= new BsModalRef();
-
+  public bsModalRef = new BsModalRef();
+  public visible = false;
   public listPosts: Observable<Array<PostResponse>>
 
   constructor(private _postFacade: PostFacade, private bsModalService: BsModalService) {
-    this.listPosts = this._postFacade.getListPosts$()
+        this.listPosts = this._postFacade.getListPosts$()
   }
 
   ngOnInit(): void {
@@ -35,8 +37,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   onClickPost = (id: number) => this.postsSubscription = this._postFacade.getPost$(id).subscribe(res => console.log(res));
 
   onViewDetail = (id: number) => {
-    this.bsModalRef = this.bsModalService.show(ProfileComponent, {ignoreBackdropClick: true, initialState: { title: 'Título del Modal' }} )
-    this.modalSubscription = this.bsModalRef.content.closeModal.subscribe( res => {
+    this.bsModalRef = this.bsModalService.show(ProfileComponent, { ignoreBackdropClick: true, initialState: { title: 'Título del Modal' } })
+    this.modalSubscription = this.bsModalRef.content.closeModal.subscribe(res => {
       this.bsModalRef.hide()
     })
   }
@@ -45,6 +47,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.postsSubscription.unsubscribe()
     this.postsListSubscription.unsubscribe()
     this.modalSubscription.unsubscribe()
+  }
+
+  toogleVisibility = () => {
+    this.visible = !this.visible
   }
 
 }

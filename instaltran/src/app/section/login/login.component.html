@@ -1,0 +1,36 @@
+<form action="container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col-md-9">
+      <label for="username">Escribe tu username</label>
+      <input class="form-control" type="text" id="username" formControlName="username" name="username"
+        [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        <div *ngIf="f.username.errors.required">El campo username es requerido</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-9">
+      <label for="email">Escribe tu email</label>
+      <input class="form-control" type="text" id="email" formControlName="email" name="email"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">El campo email es requerido</div>
+        <div *ngIf="f.email.errors.email">El email no tiene el formato correcto</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12 botonera col-md text-right align-self-end">
+      <span class="bloqueBoton">
+        <button type="button" class="btn btn-secundary align-self-end" (click)="onClear()">Limpiar</button>
+      </span>
+      <span class="bloqueBoton">
+        <button type="submit" class="btn btn-primary align-self-end">Guardar</button>
+      </span>
+    </div>
+  </div>
+
+</form>
